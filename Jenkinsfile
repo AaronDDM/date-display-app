@@ -15,7 +15,7 @@ volumes: [
           checkout scm
        }
        
-       stage('Test'){
+       stage('Test') {
          try {
             container('node') {
                env.NODE_ENV = "test"
@@ -27,10 +27,10 @@ volumes: [
                sh 'npm install'
                sh 'npm test'
             }
-         }
-         catch (exc) {
+         } catch (exc) {
             println "Failed to test - ${currentBuild.fullDisplayName}"
             throw(exc)
          }
        }
+  }
 }
