@@ -16,23 +16,21 @@ volumes: [
        }
        
        stage('Test'){
-
          try {
-         container('node') {
-            env.NODE_ENV = "test"
+            container('node') {
+               env.NODE_ENV = "test"
 
-            print "Environment will be : ${env.NODE_ENV}"
+               print "Environment will be : ${env.NODE_ENV}"
 
-            sh 'node -v'
-            sh 'npm prune'
-            sh 'npm install'
-            sh 'npm test'
+               sh 'node -v'
+               sh 'npm prune'
+               sh 'npm install'
+               sh 'npm test'
+            }
          }
-            catch (exc) {
+         catch (exc) {
             println "Failed to test - ${currentBuild.fullDisplayName}"
             throw(exc)
-            }
-
+         }
        }
-
 }
