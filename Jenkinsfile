@@ -32,5 +32,21 @@ volumes: [
             throw(exc)
          }
        }
+
+
+      stage('Create Docker images') {
+         container('docker') {
+         withCredentials([[$class: 'UsernamePasswordMultiBinding',
+            credentialsId: 'dockerhub',
+            usernameVariable: 'aarondmconvergene',
+            passwordVariable: 'test123123']]) {
+            sh """
+               docker login -u ${DOCKER_HUB_USER} -p ${DOCKER_HUB_PASSWORD}
+               docker build -t aarondmconvergene/team3:${gitCommit} .
+               docker push aarondmconvergene/team3:${gitCommit}
+               """
+         }
+         }
+      }
   }
 }
