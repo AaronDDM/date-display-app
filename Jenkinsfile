@@ -3,6 +3,7 @@ def label = "worker-${UUID.randomUUID().toString()}"
 podTemplate(label: label, containers: [
   containerTemplate(name: 'node', image: 'node:carbon-jessie', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true),
+  containerTemplate(name: 'kubectl', image: 'lachlanevenson/k8s-kubectl:v1.8.8', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'helm', image: 'lachlanevenson/k8s-helm:latest', command: 'cat', ttyEnabled: true)
 ],
 volumes: [
@@ -41,6 +42,24 @@ volumes: [
                docker build -t aarondmconvergence/team3:latest .
                docker push aarondmconvergence/team3:latest
                """
+         }
+      }
+
+      stage('Run kubectl') {
+         container('kubectl') {
+            sh "kubectl get pods"
+         }
+      }
+
+      stage('Deploy') {
+         container('kubectl') {
+            sh "kubectl run aarondmconvergence/team3:latest"
+         }
+      }
+
+      stage('Run kubectl x2') {
+         container('kubectl') {
+            sh "kubectl get pods"
          }
       }
   }
