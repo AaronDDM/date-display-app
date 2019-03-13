@@ -38,8 +38,8 @@ volumes: [
          container('docker') {
             sh """
                docker login -u aarondmconvergene -p test123123
-               docker build -t aarondmconvergene/team3:${gitCommit} .
-               docker push aarondmconvergene/team3:${gitCommit}
+               docker build -t aarondmconvergene/team3:latest .
+               docker push aarondmconvergene/team3:latest
                """
          }
       }
