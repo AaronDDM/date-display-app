@@ -37,9 +37,9 @@ volumes: [
       stage('Create Docker images') {
          container('docker') {
             sh """
-               docker login -u aarondmconvergene -p test123123
-               docker build -t aarondmconvergene/team3:latest .
-               docker push aarondmconvergene/team3:latest
+               docker login -u aarondmconvergence -p test123123
+               docker build -t aarondmconvergence/team3:latest .
+               docker push aarondmconvergence/team3:latest
                """
          }
       }
