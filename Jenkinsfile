@@ -47,8 +47,8 @@ volumes: [
 
       stage('Deploy') {
          container('kubectl') {
-            sh "kubectl --namespace=jenkins-team3 get serviceaccount"
-            //sh "kubectl run --namespace=jenkins-team3 --image=aarondmconvergence/team3:latest team3"
+            //sh "kubectl --namespace=jenkins-team3 get serviceaccount"
+            sh "kubectl run --serviceaccount=jenkins-team3:default --image=aarondmconvergence/team3:latest team3"
          }
       }
 
