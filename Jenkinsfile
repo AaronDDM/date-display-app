@@ -45,15 +45,6 @@ volumes: [
          }
       }*/
 
-      stage('Run kubectl') {
-         container('kubectl') {
-            sh """
-               kubectl get namespaces
-               kubectl cluster-info
-               """
-         }
-      }
-
       stage('Deploy') {
          container('kubectl') {
             sh "kubectl get serviceaccount"
