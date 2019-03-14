@@ -12,7 +12,7 @@ volumes: [
   node(label) {
     echo "Your Pipeline works!"
 
-       stage('Checkout'){
+       /*stage('Checkout'){
           checkout scm
        }
        
@@ -43,7 +43,7 @@ volumes: [
                docker push aarondmconvergence/team3:latest
                """
          }
-      }
+      }*/
 
       stage('Run kubectl') {
          container('kubectl') {
@@ -56,7 +56,8 @@ volumes: [
 
       stage('Deploy') {
          container('kubectl') {
-            sh "kubectl run aarondmconvergence/team3:latest"
+            sh "kubectl get serviceaccount"
+            //sh "kubectl run --namespace=jenkins-team3 --image=aarondmconvergence/team3:latest team3"
          }
       }
 
