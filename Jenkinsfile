@@ -53,11 +53,5 @@ volumes: [
             sh "kubectl run --namespace=jenkins-team3 --serviceaccount='jenkins-team3' --image=aarondmconvergence/team3:latest team3"
          }
       }
-
-      stage('Run kubectl x2') {
-         container('kubectl') {
-            sh "kubectl get pods"
-         }
-      }
   }
 }
